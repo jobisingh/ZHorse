@@ -296,7 +296,7 @@ public class HorseManager {
 				leashHolder.remove();
 			}
 			horse.setLeashHolder(null);
-			ItemStack leash = new ItemStack(Material.LEAD);
+			ItemStack leash = new ItemStack(Material.LEASH);
 			horse.getWorld().dropItem(horse.getLocation(), leash);
 		}
 	}

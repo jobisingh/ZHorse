@@ -2,6 +2,7 @@ package com.github.zedd7.zhorse.managers;
 
 import java.util.UUID;
 
+import org.bukkit.DyeColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -240,7 +241,7 @@ public class EventManager implements Listener {
 			/* Manages leashing of undead horses */
 			if (horse instanceof SkeletonHorse || horse instanceof ZombieHorse) {
 				if (!horse.isLeashed() && zh.getCM().isLeashOnUndeadHorseAllowed()) {
-					HandEnum holdingHand = getHoldingHand(p, new ItemStack(Material.LEAD));
+					HandEnum holdingHand = getHoldingHand(p, new ItemStack(Material.LEASH));
 					if (!holdingHand.equals(HandEnum.NONE)) { // If player is holding a leash
 						cancelEvent(e, p, true, true);
 						PlayerLeashEntityEvent event = new PlayerLeashEntityEvent(horse, p, p);
@@ -268,26 +269,26 @@ public class EventManager implements Listener {
 				if (!p.isSneaking() // Allows to give food, open inventory, put on leash or place chest/saddle
 						// TODO refactor
 						&& !(horse.isLeashed() && horse.getLeashHolder().equals(p))
-						&& getHoldingHand(p, new ItemStack(Material.LEAD)).equals(HandEnum.NONE)
+						&& getHoldingHand(p, new ItemStack(Material.LEASH)).equals(HandEnum.NONE)
 						&& getHoldingHand(p, new ItemStack(Material.SADDLE)).equals(HandEnum.NONE)
-						&& getHoldingHand(p, new ItemStack(Material.BLACK_CARPET)).equals(HandEnum.NONE)
-						&& getHoldingHand(p, new ItemStack(Material.BLUE_CARPET)).equals(HandEnum.NONE)
-						&& getHoldingHand(p, new ItemStack(Material.BROWN_CARPET)).equals(HandEnum.NONE)
-						&& getHoldingHand(p, new ItemStack(Material.CYAN_CARPET)).equals(HandEnum.NONE)
-						&& getHoldingHand(p, new ItemStack(Material.GRAY_CARPET)).equals(HandEnum.NONE)
-						&& getHoldingHand(p, new ItemStack(Material.GREEN_CARPET)).equals(HandEnum.NONE)
-						&& getHoldingHand(p, new ItemStack(Material.LIGHT_BLUE_CARPET)).equals(HandEnum.NONE)
-						&& getHoldingHand(p, new ItemStack(Material.LIGHT_GRAY_CARPET)).equals(HandEnum.NONE)
-						&& getHoldingHand(p, new ItemStack(Material.LIME_CARPET)).equals(HandEnum.NONE)
-						&& getHoldingHand(p, new ItemStack(Material.MAGENTA_CARPET)).equals(HandEnum.NONE)
-						&& getHoldingHand(p, new ItemStack(Material.ORANGE_CARPET)).equals(HandEnum.NONE)
-						&& getHoldingHand(p, new ItemStack(Material.PINK_CARPET)).equals(HandEnum.NONE)
-						&& getHoldingHand(p, new ItemStack(Material.PURPLE_CARPET)).equals(HandEnum.NONE)
-						&& getHoldingHand(p, new ItemStack(Material.RED_CARPET)).equals(HandEnum.NONE)
-						&& getHoldingHand(p, new ItemStack(Material.YELLOW_CARPET)).equals(HandEnum.NONE)
-						&& getHoldingHand(p, new ItemStack(Material.IRON_HORSE_ARMOR)).equals(HandEnum.NONE)
-						&& getHoldingHand(p, new ItemStack(Material.GOLDEN_HORSE_ARMOR)).equals(HandEnum.NONE)
-						&& getHoldingHand(p, new ItemStack(Material.DIAMOND_HORSE_ARMOR)).equals(HandEnum.NONE)
+						&& getHoldingHand(p, getCarpetByColor("BLACK")).equals(HandEnum.NONE)
+						&& getHoldingHand(p, getCarpetByColor("BLUE")).equals(HandEnum.NONE)
+						&& getHoldingHand(p, getCarpetByColor("BROWN")).equals(HandEnum.NONE)
+						&& getHoldingHand(p, getCarpetByColor("CYAN")).equals(HandEnum.NONE)
+						&& getHoldingHand(p, getCarpetByColor("GRAY")).equals(HandEnum.NONE)
+						&& getHoldingHand(p, getCarpetByColor("GREEN")).equals(HandEnum.NONE)
+						&& getHoldingHand(p, getCarpetByColor("LIGHT_BLUE")).equals(HandEnum.NONE)
+						&& getHoldingHand(p, getCarpetByColor("SILVER")).equals(HandEnum.NONE)
+						&& getHoldingHand(p, getCarpetByColor("LIME")).equals(HandEnum.NONE)
+						&& getHoldingHand(p, getCarpetByColor("MAGENTA")).equals(HandEnum.NONE)
+						&& getHoldingHand(p, getCarpetByColor("ORANGE")).equals(HandEnum.NONE)
+						&& getHoldingHand(p, getCarpetByColor("PINK")).equals(HandEnum.NONE)
+						&& getHoldingHand(p, getCarpetByColor("PURPLE")).equals(HandEnum.NONE)
+						&& getHoldingHand(p, getCarpetByColor("RED")).equals(HandEnum.NONE)
+						&& getHoldingHand(p, getCarpetByColor("YELLOW")).equals(HandEnum.NONE)
+						&& getHoldingHand(p, new ItemStack(Material.IRON_BARDING)).equals(HandEnum.NONE)
+						&& getHoldingHand(p, new ItemStack(Material.GOLD_BARDING)).equals(HandEnum.NONE)
+						&& getHoldingHand(p, new ItemStack(Material.DIAMOND_BARDING)).equals(HandEnum.NONE)
 						&& getHoldingHand(p, new ItemStack(Material.CHEST)).equals(HandEnum.NONE))
 				{
 					cancelEvent(e, p, true, true);
@@ -299,6 +300,32 @@ public class EventManager implements Listener {
 				}
 			}
 		}
+	}
+	
+	public ItemStack getCarpetByColor(String color) {
+		ItemStack carpet = new ItemStack(Material.CARPET);
+		
+		switch(color) {
+			case "BLACK": carpet.setDurability(DyeColor.BLACK.getDyeData());
+			case "BLUE": carpet.setDurability(DyeColor.BLUE.getDyeData());
+			case "BROWN": carpet.setDurability(DyeColor.BROWN.getDyeData());
+			case "CYAN": carpet.setDurability(DyeColor.CYAN.getDyeData());
+			case "GRAY": carpet.setDurability(DyeColor.GRAY.getDyeData());
+			case "GREEN": carpet.setDurability(DyeColor.GREEN.getDyeData());
+			case "LIGHT_BLUE": carpet.setDurability(DyeColor.LIGHT_BLUE.getDyeData());
+			case "SILVER": carpet.setDurability(DyeColor.SILVER.getDyeData());
+			case "LIME": carpet.setDurability(DyeColor.LIME.getDyeData());
+			case "MAGENTA": carpet.setDurability(DyeColor.MAGENTA.getDyeData());
+			case "ORANGE": carpet.setDurability(DyeColor.ORANGE.getDyeData());
+			case "PINK": carpet.setDurability(DyeColor.PINK.getDyeData());
+			case "PURPLE": carpet.setDurability(DyeColor.PURPLE.getDyeData());
+			case "RED": carpet.setDurability(DyeColor.RED.getDyeData());
+			case "YELLOW": carpet.setDurability(DyeColor.YELLOW.getDyeData());
+			default:
+		}
+
+		
+		return carpet;
 	}
 
 	@EventHandler(priority = EventPriority.MONITOR)
@@ -320,7 +347,7 @@ public class EventManager implements Listener {
 	public void onPlayerLeashEntity(PlayerLeashEntityEvent e) {
 		if (e.getLeashHolder() instanceof Player && e.getEntity() instanceof AbstractHorse) {
 			Player p = (Player) e.getPlayer();
-			ItemStack item = getItem(p, getHoldingHand(p, new ItemStack(Material.LEAD)));
+			ItemStack item = getItem(p, getHoldingHand(p, new ItemStack(Material.LEASH)));
 			int savedAmount = item.getAmount();
 			e.setCancelled(!isPlayerAllowedToInteract(p, (AbstractHorse) e.getEntity(), false));
 			if (e.isCancelled()) {
