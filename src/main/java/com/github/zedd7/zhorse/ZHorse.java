@@ -1,5 +1,6 @@
 package com.github.zedd7.zhorse;
 
+import com.github.zedd7.zhorse.jobisingh.addon.StatsHandler;
 import com.github.zedd7.zhorse.managers.*;
 import com.github.zedd7.zhorse.utils.Metrics;
 import org.bukkit.plugin.Plugin;
@@ -20,16 +21,26 @@ public class ZHorse extends JavaPlugin {
 	private PermissionManager permissionManager;
 	private ResourceManager resourceManager;
 	private VersionManager versionManager;
+	
+	public static Plugin plugin;
 
 	@Override
 	public void onEnable() {
+		StatsHandler.loadGenders();
+		StatsHandler.loadAges();
+		
 		initDependencies();
 		initManagers();
 		initMetrics();
+		plugin = this;
+		
+		StatsHandler.startAgingHandler();
 	}
 
 	@Override
     public void onDisable() {
+		StatsHandler.saveGenders();
+		StatsHandler.saveAges();
 		horseManager.untrackHorses();
 		dataManager.closeDatabase();
     }

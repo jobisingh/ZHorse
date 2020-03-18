@@ -2,11 +2,13 @@ package com.github.zedd7.zhorse.commands;
 
 import java.util.UUID;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.AbstractHorse;
 import org.bukkit.entity.ChestedHorse;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Llama;
+import org.bukkit.entity.Player;
 
 import com.github.zedd7.zhorse.ZHorse;
 import com.github.zedd7.zhorse.database.HorseRecord;
@@ -16,6 +18,7 @@ import com.github.zedd7.zhorse.database.PlayerRecord;
 import com.github.zedd7.zhorse.enums.HorseStatisticEnum;
 import com.github.zedd7.zhorse.enums.HorseVariantEnum;
 import com.github.zedd7.zhorse.enums.LocaleEnum;
+import com.github.zedd7.zhorse.jobisingh.addon.StatsHandler;
 import com.github.zedd7.zhorse.utils.MessageConfig;
 
 public class CommandInfo extends AbstractCommand {
@@ -80,6 +83,16 @@ public class CommandInfo extends AbstractCommand {
 
 		zh.getCmdM().updateCommandHistory(s, command);
 		zh.getEM().payCommand(p, command);
+		
+		Player owner = (Player) s;
+		
+		owner.sendMessage(ChatColor.YELLOW + " Gender: " + ChatColor.GOLD + StatsHandler.getHorseGender(horse.getUniqueId()));
+		
+		if(StatsHandler.hasAge(horse.getUniqueId()) == false) StatsHandler.setHorseAge(horse.getUniqueId(), 0.0);
+		owner.sendMessage(ChatColor.YELLOW + " Age: " + ChatColor.GOLD + String.valueOf(StatsHandler.getHorseAge(horse.getUniqueId())));
+		
+		
+		
 	}
 
 	public static void displayInfoHeader(ZHorse zh, CommandSender s) {

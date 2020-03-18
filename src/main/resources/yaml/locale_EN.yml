@@ -61,6 +61,9 @@ Messages:
   horseEdited: "<yellow>Statistics of <gold><horse><yellow> have been edited."
   horseFreed: "<yellow>Freedom was given to <gold><horse><yellow>."
   horseGiven: "<yellow>You gave <gold><horse><yellow> to <gold><player><yellow>."
+  horseGendered: "<gold><horse><yellow> has been given a new Gender."
+  horseAged: "<gold><horse><yellow> has had its Age changed."
+  horseBreeded: "<gold><horse><yellow> has had its Breed change."
   horseHealed: "<gold><horse><yellow> has been fully healed."
   horseIsProtected: "<gold><horse><yellow> is protected against attacks."
   horseKilled: "<gold><horse><yellow> was just killed by <gold><player><yellow>."
@@ -202,6 +205,11 @@ Command descriptions:
   free: "<gold>/zh free<gray>: <yellow>Release the horse."
   friend: "<gold>/zh friend<gray>: <yellow>Manage friends."
   give: "<gold>/zh give<gray>: <yellow>Give the horse to another player."
+  gender: "<gold>/zh gender<gray>: <yellow>Gives the horse a Gender."
+  male: "<gold>/zh gender male<gray>: <yellow>Changes the Horses gender to Male"
+  female: "<gold>/zh gender female<gray>: <yellow>Changes the Horses gender to Female"
+  age: "<gold>/zh age<gray>: <yellow>Changes the age of the horse."
+  breed: "<gold>/zh breed<gray>: <yellow>Changes the Breed of the horse."
   heal: "<gold>/zh heal<gray>: <yellow>Heal the horse."
   help: "<gold>/zh help<gray>: <yellow>Display the available commands."
   here: "<gold>/zh here<gray>: <yellow>Teleport the horse to you."
@@ -225,6 +233,10 @@ Admin command descriptions:
   burial: "<gold>/zh admin burial<gray>: <yellow>Clear all dead horses from the database."
   clear: "<gold>/zh admin clear<gray>: <yellow>Clear a living horse from the database."
   import: "<gold>/zh admin import<gray>: <yellow>Import external data in your current database."
+
+Gender command descriptions:
+  male: "<gold>/zh gender male<gray>: <yellow>Changes a horse's gender to male."
+  female: "<gold>/zh gender female<gray>: <yellow>Changes a horse's gender to male"
 
 Friend command descriptions:
   add: "<gold>/zh friend add<gray>: <yellow>Add a player to your friends list."
@@ -250,6 +262,9 @@ Command usages:
   free: "<gold>/zh free<yellow> (-i horseID) (-p playerName) (-a)"
   friend: "<gold>/zh friend<yellow> sub-command (value)"
   give: "<gold>/zh give<yellow> (-i horseID) (-p) playerName (-a)"
+  gender: "<gold>/zh gender<yellow> (gender) (-p playerName) (-a)"
+  age: "<gold>/zh age<yellow> (age) (-p playerName) (-a)"
+  breed: "<gold>/zh breed<yellow> (breed) (-p playerName) (-a)"
   heal: "<gold>/zh heal<yellow> (-i horseID) (-p playerName) (-a)"
   help: "<gold>/zh help<yellow> (#page | commandName) (-p playerName) (-a)"
   here: "<gold>/zh here<yellow> (-i horseID) (-p playerName) (-a)"
