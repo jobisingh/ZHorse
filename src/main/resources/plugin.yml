@@ -36,6 +36,10 @@ permissions:
       zh.give: true
       zh.heal: true
       zh.gender: true
+      zh.age: true
+      zh.breed: true
+      zh.removehorsebreed: true
+      zh.createhorsebreed: true
       zh.help: true
       zh.here: true
       zh.info: true
@@ -94,6 +98,10 @@ permissions:
       zh.free.admin: true
       zh.friend.admin: true
       zh.give.admin: true
+      zh.createhorsebreed.admin: true
+      zh.age.admin: true
+      zh.breed.admin: true
+      zh.removehorsebreed.admin: true
       zh.gender.admin: true
       zh.heal.admin: true
       zh.help.admin: true
@@ -125,6 +133,10 @@ permissions:
       zh.friend.free: true
       zh.give.free: true
       zh.gender.free: true
+      zh.age.free: true
+      zh.breed.free: true
+      zh.createhorsebreed.free: true
+      zh.removehorsebreed.free: true      
       zh.heal.free: true
       zh.help.free: true
       zh.here.free: true

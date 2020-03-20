@@ -1,11 +1,15 @@
 package com.github.zedd7.zhorse;
 
+import com.github.zedd7.zhorse.jobisingh.addon.Config;
 import com.github.zedd7.zhorse.jobisingh.addon.StatsHandler;
 import com.github.zedd7.zhorse.managers.*;
 import com.github.zedd7.zhorse.utils.Metrics;
+import com.google.common.math.Stats;
+
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ZHorse extends JavaPlugin {
@@ -34,7 +38,11 @@ public class ZHorse extends JavaPlugin {
 		initMetrics();
 		plugin = this;
 		
+		Config.setup(this);
+		if (Config.getData().contains("Breeds") == false) {ArrayList<String> breeds = new ArrayList<>(); breeds.add("Unkown"); breeds.add("Unkown"); Config.getData().set("Breeds", breeds); Config.saveData();}
 		StatsHandler.startAgingHandler();
+		StatsHandler.updateListOfBreedsFromConfig();
+		StatsHandler.loadBreeds();
 	}
 
 	@Override
@@ -43,6 +51,8 @@ public class ZHorse extends JavaPlugin {
 		StatsHandler.saveAges();
 		horseManager.untrackHorses();
 		dataManager.closeDatabase();
+		StatsHandler.saveListOfBreeds();
+		StatsHandler.saveBreeds();
     }
 
 	private void disable() {

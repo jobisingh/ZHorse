@@ -91,6 +91,9 @@ public class CommandInfo extends AbstractCommand {
 		if(StatsHandler.hasAge(horse.getUniqueId()) == false) StatsHandler.setHorseAge(horse.getUniqueId(), 0.0);
 		owner.sendMessage(ChatColor.YELLOW + " Age: " + ChatColor.GOLD + String.valueOf(StatsHandler.getHorseAge(horse.getUniqueId())));
 		
+		owner.sendMessage(ChatColor.YELLOW + " Breed: " + ChatColor.GOLD + String.valueOf(StatsHandler.getHorseBreed(horse.getUniqueId())));
+		
+		
 		
 		
 	}

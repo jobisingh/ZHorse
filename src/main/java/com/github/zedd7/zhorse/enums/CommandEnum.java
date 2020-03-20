@@ -12,6 +12,8 @@ public enum CommandEnum {
 	FREE("free", false,true),
 	FRIEND("friend", true,true),
 	GIVE("give", false,true),
+	CREATEBREED("createbreed", false,true),
+	REMOVEBREED("removebreed", false,true),	
 	GENDER("gender", false,true),
 	AGE("age", false,true),
 	BREED("breed", false,true),
