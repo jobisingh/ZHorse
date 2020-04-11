@@ -5,7 +5,7 @@ description: ${description}
 website: ${url}
 author: ${author}
 main: ${main-class}
-api-version: 1.14
+api-version: 1.12
 
 commands:
   zhorse:
@@ -38,8 +38,11 @@ permissions:
       zh.gender: true
       zh.age: true
       zh.breed: true
-      zh.removehorsebreed: true
-      zh.createhorsebreed: true
+      zh.discipline: true
+      zh.removehorsebreed: false
+      zh.createhorsebreed: false
+      zh.removehorsediscipline: false
+      zh.createhorsediscipline: false
       zh.help: true
       zh.here: true
       zh.info: true
@@ -98,11 +101,14 @@ permissions:
       zh.free.admin: true
       zh.friend.admin: true
       zh.give.admin: true
-      zh.createhorsebreed.admin: true
+      zh.createbreed.admin: true
+      zh.creatediscipline.admin: true
       zh.age.admin: true
       zh.breed.admin: true
-      zh.removehorsebreed.admin: true
+      zh.removebreed.admin: true
+      zh.removediscipline.admin: true
       zh.gender.admin: true
+      zh.discipline.admin: true
       zh.heal.admin: true
       zh.help.admin: true
       zh.here.admin: true
@@ -135,8 +141,11 @@ permissions:
       zh.gender.free: true
       zh.age.free: true
       zh.breed.free: true
-      zh.createhorsebreed.free: true
-      zh.removehorsebreed.free: true      
+      zh.createbreed.free: false
+      zh.removebreed.free: false    
+      zh.creatediscipline.free: false
+      zh.removediscipline.free: false   
+      zh.discipline.free: true
       zh.heal.free: true
       zh.help.free: true
       zh.here.free: true

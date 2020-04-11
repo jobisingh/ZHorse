@@ -69,15 +69,20 @@ public class CommandGender extends AbstractCommand {
 				subCommand = args.get(0);
 				
 				//args.remove(0); // Remove sub-command to allow parsing of playerName
-				if (subCommand.equalsIgnoreCase("Male")) {
+				if (subCommand.equalsIgnoreCase("Stallion")) {
 					
-					fullCommand = command + KeyWordEnum.DOT.getValue() + "Male";
-					StatsHandler.setHorseGender(horse.getUniqueId(), "Male");
+					fullCommand = command + KeyWordEnum.DOT.getValue() + "Stallion";
+					StatsHandler.setHorseGender(horse.getUniqueId(), "Stallion");
 					zh.getMM().sendMessage(s, new MessageConfig(LocaleEnum.HORSE_GENDERED) {{ setHorseName(horseName); }});
 				}
-				else if (subCommand.equalsIgnoreCase("Female")) {
-					fullCommand = command + KeyWordEnum.DOT.getValue() + "Female";
-					StatsHandler.setHorseGender(horse.getUniqueId(), "Female");
+				else if (subCommand.equalsIgnoreCase("Mare")) {
+					fullCommand = command + KeyWordEnum.DOT.getValue() + "Mare";
+					StatsHandler.setHorseGender(horse.getUniqueId(), "Mare");
+					zh.getMM().sendMessage(s, new MessageConfig(LocaleEnum.HORSE_GENDERED) {{ setHorseName(horseName); }});
+				}
+				else if (subCommand.equalsIgnoreCase("Gelding")) {
+					fullCommand = command + KeyWordEnum.DOT.getValue() + "Gelding";
+					StatsHandler.setHorseGender(horse.getUniqueId(), "Gelding");
 					zh.getMM().sendMessage(s, new MessageConfig(LocaleEnum.HORSE_GENDERED) {{ setHorseName(horseName); }});
 				}
 				else {

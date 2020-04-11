@@ -18,6 +18,7 @@ import com.github.zedd7.zhorse.database.PlayerRecord;
 import com.github.zedd7.zhorse.enums.HorseStatisticEnum;
 import com.github.zedd7.zhorse.enums.HorseVariantEnum;
 import com.github.zedd7.zhorse.enums.LocaleEnum;
+import com.github.zedd7.zhorse.jobisingh.addon.DiscipleHandler;
 import com.github.zedd7.zhorse.jobisingh.addon.StatsHandler;
 import com.github.zedd7.zhorse.utils.MessageConfig;
 
@@ -92,7 +93,7 @@ public class CommandInfo extends AbstractCommand {
 		owner.sendMessage(ChatColor.YELLOW + " Age: " + ChatColor.GOLD + String.valueOf(StatsHandler.getHorseAge(horse.getUniqueId())));
 		
 		owner.sendMessage(ChatColor.YELLOW + " Breed: " + ChatColor.GOLD + String.valueOf(StatsHandler.getHorseBreed(horse.getUniqueId())));
-		
+		owner.sendMessage(ChatColor.YELLOW + " Discipline: " + ChatColor.GOLD + String.valueOf(DiscipleHandler.getHorseDisciple(horse.getUniqueId())));
 		
 		
 		

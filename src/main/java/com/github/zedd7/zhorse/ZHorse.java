@@ -1,6 +1,8 @@
 package com.github.zedd7.zhorse;
 
 import com.github.zedd7.zhorse.jobisingh.addon.Config;
+import com.github.zedd7.zhorse.jobisingh.addon.DiscipleHandler;
+import com.github.zedd7.zhorse.jobisingh.addon.HorseBreedingListener;
 import com.github.zedd7.zhorse.jobisingh.addon.StatsHandler;
 import com.github.zedd7.zhorse.managers.*;
 import com.github.zedd7.zhorse.utils.Metrics;
@@ -32,6 +34,7 @@ public class ZHorse extends JavaPlugin {
 	public void onEnable() {
 		StatsHandler.loadGenders();
 		StatsHandler.loadAges();
+		new HorseBreedingListener(this);
 		
 		initDependencies();
 		initManagers();
@@ -43,6 +46,7 @@ public class ZHorse extends JavaPlugin {
 		StatsHandler.startAgingHandler();
 		StatsHandler.updateListOfBreedsFromConfig();
 		StatsHandler.loadBreeds();
+		DiscipleHandler.loadDisciples();
 	}
 
 	@Override
@@ -53,6 +57,7 @@ public class ZHorse extends JavaPlugin {
 		dataManager.closeDatabase();
 		StatsHandler.saveListOfBreeds();
 		StatsHandler.saveBreeds();
+		DiscipleHandler.saveDisciples();
     }
 
 	private void disable() {

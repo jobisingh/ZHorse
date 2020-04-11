@@ -60,6 +60,12 @@ public class CommandCreatebreed extends AbstractCommand {
 			if (!args.isEmpty()) {
 				subCommand = args.get(0);
 				
+				if(s.isOp() == false) {
+					s.sendMessage(ChatColor.GREEN + "[ZHorse] " + ChatColor.YELLOW + subCommand + ChatColor.GOLD + " can only be used by players with OP"); 
+					return;
+				}
+				
+				
 				//args.remove(0); // Remove sub-command to allow parsing of playerName
 				if (StatsHandler.isBreed(subCommand) == false) {
 					
@@ -68,14 +74,11 @@ public class CommandCreatebreed extends AbstractCommand {
 					zh.getMM().sendMessage(s, new MessageConfig(LocaleEnum.HORSE_CREATEDBREED) {{ }});
 				}
 				else {
-					Player player = (Player) s;
 					s.sendMessage(ChatColor.GREEN + "[ZHorse] " + ChatColor.YELLOW + subCommand + ChatColor.GOLD + " is already a breed");
-					
 				}
 			}
 			else {
-				Player player = (Player) s;
-				s.sendMessage(ChatColor.GREEN + "[ZHorse] " + ChatColor.YELLOW + "Try /zh createhorsebreed (Breed Name)");
+				s.sendMessage(ChatColor.GREEN + "[ZHorse] " + ChatColor.YELLOW + "Try /zh createbreed (Breed Name)");
 			}
 			
 

@@ -70,6 +70,11 @@ public class CommandRemovebreed extends AbstractCommand {
 			if (!args.isEmpty()) {
 				subCommand = args.get(0);
 				
+				if(s.isOp() == false) {
+					s.sendMessage(ChatColor.GREEN + "[ZHorse] " + ChatColor.YELLOW + subCommand + ChatColor.GOLD + " can only be used by players with OP"); 
+					return;
+				}
+				
 				//args.remove(0); // Remove sub-command to allow parsing of playerName
 				if (StatsHandler.isBreed(subCommand)) {
 					
@@ -85,7 +90,7 @@ public class CommandRemovebreed extends AbstractCommand {
 			}
 			else {
 				Player player = (Player) s;
-				s.sendMessage(ChatColor.YELLOW + "Try /zh removehorsebreed (Breed Name)");
+				s.sendMessage(ChatColor.YELLOW + "Try /zh removebreed (Breed Name)");
 			}
 			
 

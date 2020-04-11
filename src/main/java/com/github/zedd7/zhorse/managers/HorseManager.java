@@ -29,6 +29,7 @@ import com.github.zedd7.zhorse.database.HorseInventoryRecord;
 import com.github.zedd7.zhorse.database.HorseRecord;
 import com.github.zedd7.zhorse.database.HorseStatsRecord;
 import com.github.zedd7.zhorse.enums.HorseVariantEnum;
+import com.github.zedd7.zhorse.jobisingh.addon.StatsHandler;
 import com.github.zedd7.zhorse.utils.CallbackListener;
 import com.github.zedd7.zhorse.utils.CallbackResponse;
 import com.github.zedd7.zhorse.utils.ChunkLoad;
@@ -207,6 +208,9 @@ public class HorseManager {
 				if (copyHorse != null) {
 					UUID oldHorseUUID = sourceHorse.getUniqueId();
 					UUID newHorseUUID = copyHorse.getUniqueId();
+					
+					StatsHandler.updateOnTeleport(oldHorseUUID, newHorseUUID);
+					
 					zh.getDM().getOwnerUUID(oldHorseUUID, false, new CallbackListener<UUID>() {
 
 						@Override

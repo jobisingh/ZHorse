@@ -19,11 +19,26 @@ Author: jobisingh
 **/
 public class StatsHandler {
 	
-	private static HashMap<UUID, String> horseGenders = new HashMap<UUID, String>();
-	private static HashMap<UUID, Double> horseAges = new HashMap<UUID, Double>();
-	private static HashMap<UUID, String> horseBreeds = new HashMap<UUID, String>();
-	private static ArrayList<String> listOfBreeds = new ArrayList<String>();
+	public static HashMap<UUID, String> horseGenders = new HashMap<UUID, String>();
+	public static HashMap<UUID, Double> horseAges = new HashMap<UUID, Double>();
+	public static HashMap<UUID, String> horseBreeds = new HashMap<UUID, String>();
+	public static ArrayList<String> listOfBreeds = new ArrayList<String>();
 	
+	
+	//UPDATE ON TELEPORT
+	public static void updateOnTeleport(UUID oldHorseUUID, UUID newHorseUUID) {
+		StatsHandler.horseAges.put(newHorseUUID, StatsHandler.horseAges.get(oldHorseUUID));
+		StatsHandler.horseAges.remove(oldHorseUUID);
+		
+		StatsHandler.horseBreeds.put(newHorseUUID, StatsHandler.horseBreeds.get(oldHorseUUID));
+		StatsHandler.horseBreeds.remove(oldHorseUUID);
+		
+		StatsHandler.horseGenders.put(newHorseUUID, StatsHandler.horseGenders.get(oldHorseUUID));
+		StatsHandler.horseGenders.remove(oldHorseUUID);
+		
+		DiscipleHandler.horseDisciples.put(newHorseUUID, DiscipleHandler.getHorseDisciple(oldHorseUUID));
+		DiscipleHandler.horseDisciples.remove(oldHorseUUID);
+	}
 	
 	//GENDER
 
@@ -35,7 +50,7 @@ public class StatsHandler {
 	}
 	
 	public static Boolean setHorseGender(UUID horseID, String gender) {
-		if(gender == "Male" || gender == "Female") {
+		if(gender == "Stallion" || gender == "Mare" || gender == "Gelding") {
 			horseGenders.put(horseID, gender);
 			return true;
 		}
@@ -96,7 +111,7 @@ public class StatsHandler {
 	        	     	
 	        	for(Entry<UUID, Double> entry : horseAges.entrySet()) {
 	        		
-	        		if(entry.getValue() >= 672 ) {
+	        		if(entry.getValue() >= 8760 ) {
 	        			Damageable horse = (Damageable) Bukkit.getEntity(entry.getKey());
 	        			horse.damage(10000.99);
 	        			
@@ -202,7 +217,7 @@ public class StatsHandler {
 		}
 	}
 	
-	//Loading the Genders from a File
+	//Loading the Breeds from a File
 	public static void loadBreeds() {
 		try {
 			horseBreeds = (HashMap<UUID, String>) SLAPI.load("plugins/ZHorse/HorseBreeds");

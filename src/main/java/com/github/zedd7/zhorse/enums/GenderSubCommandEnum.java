@@ -8,8 +8,9 @@ Author: Jobisingh
 **/
 public enum GenderSubCommandEnum {
 
-	MALE("male"),
-	FEMALE("female");
+	STALLION("stallion"),
+	MARE("mare"),
+    GELDING("gelding");
 
 	private String name;
 
