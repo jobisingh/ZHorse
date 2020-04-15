@@ -1,18 +1,30 @@
 package com.github.zedd7.zhorse;
 
-import com.github.zedd7.zhorse.jobisingh.addon.Config;
-import com.github.zedd7.zhorse.jobisingh.addon.DiscipleHandler;
-import com.github.zedd7.zhorse.jobisingh.addon.HorseBreedingListener;
-import com.github.zedd7.zhorse.jobisingh.addon.StatsHandler;
-import com.github.zedd7.zhorse.managers.*;
-import com.github.zedd7.zhorse.utils.Metrics;
-import com.google.common.math.Stats;
+
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import com.eqn.jobisingh.addon.Config;
+import com.eqn.jobisingh.addon.ConfigDisciplines;
+import com.eqn.jobisingh.addon.DiscipleHandler;
+import com.eqn.jobisingh.addon.HorseBreedingListener;
+import com.eqn.jobisingh.addon.StatsHandler;
+import com.github.zedd7.zhorse.managers.CommandManager;
+import com.github.zedd7.zhorse.managers.ConfigManager;
+import com.github.zedd7.zhorse.managers.DataManager;
+import com.github.zedd7.zhorse.managers.EconomyManager;
+import com.github.zedd7.zhorse.managers.EventManager;
+import com.github.zedd7.zhorse.managers.HorseManager;
+import com.github.zedd7.zhorse.managers.LocaleManager;
+import com.github.zedd7.zhorse.managers.MessageManager;
+import com.github.zedd7.zhorse.managers.PermissionManager;
+import com.github.zedd7.zhorse.managers.ResourceManager;
+import com.github.zedd7.zhorse.managers.VersionManager;
+import com.github.zedd7.zhorse.utils.Metrics;
 
 public class ZHorse extends JavaPlugin {
 
@@ -42,10 +54,13 @@ public class ZHorse extends JavaPlugin {
 		plugin = this;
 		
 		Config.setup(this);
-		if (Config.getData().contains("Breeds") == false) {ArrayList<String> breeds = new ArrayList<>(); breeds.add("Unkown"); breeds.add("Unkown"); Config.getData().set("Breeds", breeds); Config.saveData();}
+		if (Config.getData().contains("Breeds") == false) {ArrayList<String> breeds = new ArrayList<>(); breeds.add("Unknown"); breeds.add("Unknown"); Config.getData().set("Breeds", breeds); Config.saveData();}
 		StatsHandler.startAgingHandler();
 		StatsHandler.updateListOfBreedsFromConfig();
 		StatsHandler.loadBreeds();
+		ConfigDisciplines.setup(this);
+		if (ConfigDisciplines.getData().contains("Disciplines") == false) {ArrayList<String> breeds = new ArrayList<>(); breeds.add("Unknown"); breeds.add("Unknown"); ConfigDisciplines.getData().set("Disciplines", breeds); ConfigDisciplines.saveData();}
+		DiscipleHandler.updatelistOfDisciplesFromConfig();
 		DiscipleHandler.loadDisciples();
 	}
 
@@ -57,6 +72,7 @@ public class ZHorse extends JavaPlugin {
 		dataManager.closeDatabase();
 		StatsHandler.saveListOfBreeds();
 		StatsHandler.saveBreeds();
+		DiscipleHandler.savelistOfDisciples();
 		DiscipleHandler.saveDisciples();
     }
 

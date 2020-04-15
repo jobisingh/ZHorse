@@ -1,6 +1,5 @@
 package com.github.zedd7.zhorse.commands;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -21,16 +20,26 @@ public class CommandFree extends AbstractCommand {
 		if (isPlayer() && zh.getEM().canAffordCommand(p, command) && parseArguments() && hasPermission() && isCooldownElapsed() && isWorldEnabled()
 				) {
 			
-			if(args.size() == 3) {
+			if(args.size() >= 3) {
 				if(args.get(0).equalsIgnoreCase("-admin")) {
 					
 					if(Bukkit.getPlayer(args.get(1)) != null) {
 						
-						Integer horseIDInt = zh.getDM().getHorseID(Bukkit.getPlayer(args.get(1)).getUniqueId(), args.get(2), true, null);
+						String horseName = "";
+						if(args.size() > 3) {
+							for(int i = 0; i < args.size() ; i++) {
+								if(i < 2) continue;
+								if(horseName.equals("") ) horseName = args.get(i);
+								else horseName = horseName + " " + args.get(i);
+							}
+						}
+						else horseName = args.get(2);
+						
+						Integer horseIDInt = zh.getDM().getHorseID(Bukkit.getPlayer(args.get(1)).getUniqueId(), horseName, true, null);
 						if (horseIDInt != null) {
 							horseID = horseIDInt.toString();
 						} else {
-							s.sendMessage(ChatColor.GREEN + "[ZHorse] " + ChatColor.YELLOW + args.get(1) + " does not have a horse with the name " + args.get(2) );
+							s.sendMessage(ChatColor.GREEN + "[ZHorse] " + ChatColor.YELLOW + args.get(1) + " does not have a horse with the name " + horseName );
 							return;
 						}
 						if(s.hasPermission("zh.admin.*") == false) {

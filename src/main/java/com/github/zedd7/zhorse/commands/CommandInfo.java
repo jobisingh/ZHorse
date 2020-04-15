@@ -10,6 +10,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Llama;
 import org.bukkit.entity.Player;
 
+import com.eqn.jobisingh.addon.DiscipleHandler;
+import com.eqn.jobisingh.addon.StatsHandler;
 import com.github.zedd7.zhorse.ZHorse;
 import com.github.zedd7.zhorse.database.HorseRecord;
 import com.github.zedd7.zhorse.database.HorseStableRecord;
@@ -18,8 +20,6 @@ import com.github.zedd7.zhorse.database.PlayerRecord;
 import com.github.zedd7.zhorse.enums.HorseStatisticEnum;
 import com.github.zedd7.zhorse.enums.HorseVariantEnum;
 import com.github.zedd7.zhorse.enums.LocaleEnum;
-import com.github.zedd7.zhorse.jobisingh.addon.DiscipleHandler;
-import com.github.zedd7.zhorse.jobisingh.addon.StatsHandler;
 import com.github.zedd7.zhorse.utils.MessageConfig;
 
 public class CommandInfo extends AbstractCommand {

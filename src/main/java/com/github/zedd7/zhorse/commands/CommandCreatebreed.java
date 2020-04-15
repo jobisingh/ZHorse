@@ -2,20 +2,12 @@ package com.github.zedd7.zhorse.commands;
 
 import java.util.UUID;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.attribute.Attribute;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.AbstractHorse;
-import org.bukkit.entity.Player;
 
+import com.eqn.jobisingh.addon.StatsHandler;
 import com.github.zedd7.zhorse.ZHorse;
-import com.github.zedd7.zhorse.commands.AbstractCommand;
-import com.github.zedd7.zhorse.enums.FriendSubCommandEnum;
-import com.github.zedd7.zhorse.enums.GenderSubCommandEnum;
-import com.github.zedd7.zhorse.enums.KeyWordEnum;
 import com.github.zedd7.zhorse.enums.LocaleEnum;
-import com.github.zedd7.zhorse.jobisingh.addon.StatsHandler;
 import com.github.zedd7.zhorse.utils.MessageConfig;
 /**
 Author: jobisingh
@@ -33,16 +25,15 @@ public class CommandCreatebreed extends AbstractCommand {
 		
 		if (isPlayer() && parseArguments() && hasPermission() && isCooldownElapsed() && isWorldEnabled()
 				) {
-
+			if(s.isOp()) {
+				
 				if (!targetMode) {
-
-							execute();
-
+					execute();
 				}
 				else {
 					sendCommandUsage();
 				}
-			
+			} else s.sendMessage(ChatColor.GREEN + "[ZHorse] " + ChatColor.RED +"You must be OP to use this command.");
 		}
 	}
 
